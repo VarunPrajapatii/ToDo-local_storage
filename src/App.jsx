@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { TodoProvider } from './contexts/TodoContext'
-import { TodoForm, TodoItem } from './components';
+import { TodoForm, TodoItem } from './components/index';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -11,11 +11,11 @@ function App() {
   }
 
   const updateTodo = (id, todo) => {
-    setTodos((prev) => {prev.map((prevTodo) => {prevTodo.id === id ? todo : prevTodo})})
+    setTodos((prev) => prev.map((prevTodo) => prevTodo.id === id ? todo : prevTodo))
   }
 
   const deleteTodo = (id) => {
-    setTodos((prev) => {prev.filter((prevTodo) => prevTodo.id !== id)})
+    setTodos((prev) => prev.filter((prevTodo) => prevTodo.id !== id))
   }
   
   const toggleComplete = (id) => {
@@ -45,14 +45,14 @@ function App() {
             <TodoForm />
           </div>
           <div className="flex flex-wrap gap-y-3">
-            {
-              todos.map((todo) => (
-                <div key={todo.id} className='w-full'>
+            {todos.map((todo) => (
+                <div key={todo.id}
+                className='w-full'
+                >
                   <TodoItem todo={todo} />
                 </div>
-              ))
-            }
-          </div>
+              ))}
+            </div>
         </div>
       </div>
     </TodoProvider>
